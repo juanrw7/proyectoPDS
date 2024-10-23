@@ -1,14 +1,12 @@
 public class Rutina {
 
-  private String ingredientes;
-  private double cantidades;
-  private double calorias;
+  private String grupoMuscular;
+  private double duracion;
   private String pasos;
 
-  public Rutina(String ingredientes, double cantidades, double calorias, String pasos){
-    this.ingredientes = ingredientes;
-    this.cantidades = cantidades;
-    this.calorias = calorias;
+  public Rutina(String grupoMuscular, double duracion, String pasos){
+    this.grupoMuscular = grupoMuscular;
+    this.duracion = duracion;
     this.pasos = pasos;
   }
 
