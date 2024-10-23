@@ -6,7 +6,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
 
-public class MyPanel extends JPanel {
+public class Fat2Fit extends JPanel implements ActionListener{
   private JButton botonEnviarDatos;
   private JLabel etiquetaPeso;
   private JLabel etiquetaAltura;
@@ -21,7 +21,7 @@ public class MyPanel extends JPanel {
   private JLabel etiquetaRecetas;
   private JLabel nombreApp;
 
-  public MyPanel() {
+  public Fat2Fit() {
     //construct components
     botonEnviarDatos = new JButton ("ENVIAR");
     etiquetaPeso = new JLabel ("Peso: ");
@@ -38,11 +38,12 @@ public class MyPanel extends JPanel {
     nombreApp = new JLabel ("Fat2Fit");
 
     //adjust size and set layout
-    setPreferredSize (new Dimension (1176, 809));
+    setPreferredSize (new Dimension (1176, 609));
     setLayout (null);
 
     //add components
     add (botonEnviarDatos);
+    botonEnviarDatos.addActionListener(this);
     add (etiquetaPeso);
     add (etiquetaAltura);
     add (etiquetaEdad);
@@ -60,23 +61,39 @@ public class MyPanel extends JPanel {
     botonEnviarDatos.setBounds (70, 325, 100, 20);
     etiquetaPeso.setBounds (45, 130, 100, 25);
     etiquetaAltura.setBounds (45, 175, 100, 25);
-    etiquetaEdad.setBounds (40, 220, 100, 25);
-    etiquetaGenero .setBounds (40, 265, 100, 25);
+    etiquetaEdad.setBounds (45, 220, 100, 25);
+    etiquetaGenero .setBounds (45, 265, 100, 25);
     campoTextoPeso.setBounds (115, 135, 100, 25);
     campoTextoAltura.setBounds (115, 180, 100, 25);
     campoTextoEdad.setBounds (115, 220, 100, 25);
     campoTextoGenero.setBounds (115, 265, 100, 25);
     etiquetaTitulo.setBounds (85, 90, 70, 25);
     etiquetaRutinas.setBounds (405, 110, 100, 25);
-    etiquetaRecetas.setBounds (405, 235, 100, 25);
+    etiquetaRecetas.setBounds (405, 335, 100, 25);
     nombreApp.setBounds (10, 10, 100, 25);
-    }
+  }
 
+  public void actionPerformed(ActionEvent e){
+    if(e.getSource() == botonEnviarDatos){ 
+
+      String pesoStr = campoTextoPeso.getText();
+      double pesoDbl = Double.parseDouble(pesoStr);
+      
+      String alturaStr = campoTextoAltura.getText();
+      double alturaDbl = Double.parseDouble(alturaStr);
+      
+      String edadStr = campoTextoEdad.getText();
+      int edadInt = Integer.parseInt(edadStr);
+
+      String generoStr = campoTextoGenero.getText();
+      
+    }
+  }
 
   public static void main (String[] args) {
-    JFrame frame = new JFrame ("MyPanel");
+    JFrame frame = new JFrame ("Fat2Fit");
     frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
-    frame.getContentPane().add (new MyPanel());
+    frame.getContentPane().add (new Fat2Fit());
     frame.pack();
     frame.setVisible (true);
   }

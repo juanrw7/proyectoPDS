@@ -1,18 +1,20 @@
 public class Usuario {
   // Instance variables
-  private int edad;
   private double peso;
   private double altura;
+  private int edad;
   private String genero;
 
 
-  public Usuario(int edad, double peso, double altura, String genero) {
-    this.edad = edad;
+  public Usuario(double peso, double altura, int edad, String genero) {
     this.peso = peso;
     this.altura = altura;
+    this.edad = edad;
     this.genero = genero;
   }
 
-  
+  public double calcularIMC() {
+    return peso/(altura*altura);
+  }
 
 }
