@@ -68,8 +68,8 @@ public class Fat2Fit extends JPanel implements ActionListener{
     campoTextoEdad.setBounds (115, 220, 100, 25);
     campoTextoGenero.setBounds (115, 265, 100, 25);
     etiquetaTitulo.setBounds (85, 90, 70, 25);
-    etiquetaRutinas.setBounds (405, 110, 690, 200);
-    etiquetaRecetas.setBounds (405, 335, 690, 200);
+    etiquetaRutinas.setBounds (405, 90, 690, 200);
+    etiquetaRecetas.setBounds (405, 315, 690, 200);
     nombreApp.setBounds (10, 10, 100, 25);
   }
 
@@ -92,8 +92,10 @@ public class Fat2Fit extends JPanel implements ActionListener{
       double imc = usuario.calcularIMC();
 
       String mensajeRutina = Rutina.calcularTipoRutina(imc);
-
       etiquetaRutinas.setText(mensajeRutina);
+
+      String mensajeReceta = Receta.calcularTipoReceta(imc);
+      etiquetaRecetas.setText(mensajeReceta);
       
     }
   }
