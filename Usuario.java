@@ -1,5 +1,5 @@
 public class Usuario {
-  // Instance variables
+
   private double peso;
   private double altura;
   private int edad;
@@ -15,6 +15,15 @@ public class Usuario {
 
   public double calcularIMC() {
     return peso/(altura*altura);
+  }
+
+  //metodo para comprobar informacion
+  public void mostrarInfoUsuario() {
+    System.out.println("Informacion del usuario: ");
+    System.out.println("peso: " + peso);
+    System.out.println("altura: " + altura);
+    System.out.println("edad: " + edad);
+    System.out.println("genero: " + genero);
   }
 
 }
