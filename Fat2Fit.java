@@ -6,20 +6,36 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
 
+import java.util.Arrays;
+
 public class Fat2Fit extends JPanel implements ActionListener{
   private JButton botonEnviarDatos;
   private JLabel etiquetaPeso;
   private JLabel etiquetaAltura;
   private JLabel etiquetaEdad;
-  private JLabel etiquetaGenero ;
+  private JLabel etiquetaNombre;
   private JTextField campoTextoPeso;
   private JTextField campoTextoAltura;
   private JTextField campoTextoEdad;
-  private JTextField campoTextoGenero;
+  private JTextField campoTextoNombre;
   private JLabel etiquetaTitulo;
-  private JLabel etiquetaRutinas;
-  private JLabel etiquetaRecetas;
+
+  private JTextArea etiquetaRecetas;
+  private JTextArea etiquetaRutinas;
+  
   private JLabel nombreApp;
+  private JLabel etiquetaProgreso1;
+  private JLabel etiquetaProgreso2;
+  private JTextField campoTextoDia;
+  private JTextField campoTextoMes;
+  private JTextField campoTextoAno;
+  private JLabel etiquetaDia;
+  private JLabel etiquetaMes;
+  private JLabel etiquetaAno;
+  private JButton botonGuardarProgreso;
+  private JLabel etiquetaMostrarIMC;
+  private JButton botonActualizarDatos;
+  private JLabel etiquetaConfirmarGuardado;
 
   public Fat2Fit() {
     //construct components
@@ -27,18 +43,37 @@ public class Fat2Fit extends JPanel implements ActionListener{
     etiquetaPeso = new JLabel ("Peso: ");
     etiquetaAltura = new JLabel ("Altura: ");
     etiquetaEdad = new JLabel ("Edad: ");
-    etiquetaGenero  = new JLabel ("Genero: ");
+    etiquetaNombre = new JLabel ("Nombre: ");
     campoTextoPeso = new JTextField (5);
     campoTextoAltura = new JTextField (5);
     campoTextoEdad = new JTextField (5);
-    campoTextoGenero = new JTextField (5);
-    etiquetaTitulo = new JLabel ("Tus datos");
-    etiquetaRutinas = new JLabel ("...");
-    etiquetaRecetas = new JLabel ("...");
-    nombreApp = new JLabel ("Fat2Fit");
+    campoTextoNombre = new JTextField (5);
+    etiquetaTitulo = new JLabel ("Ingresa tus datos");
+
+    etiquetaRecetas = new JTextArea (15, 15);
+    etiquetaRutinas = new JTextArea (15, 15);
+    
+    nombreApp = new JLabel ("Fat2Fit, Obten ayuda para mejorar tu salud");
+    etiquetaProgreso1 = new JLabel ("Para guardar progreso (opcional)");
+    etiquetaProgreso2 = new JLabel ("ingresa la fecha.");
+    campoTextoDia = new JTextField (5);
+    campoTextoMes = new JTextField (5);
+    campoTextoAno = new JTextField (5);
+    etiquetaDia = new JLabel ("Día:");
+    etiquetaMes = new JLabel ("Mes:");
+    etiquetaAno = new JLabel ("Año:");
+    botonGuardarProgreso = new JButton ("Guardar Progreso");
+    etiquetaMostrarIMC = new JLabel ("...");
+    botonActualizarDatos = new JButton ("Actualizar");
+    etiquetaConfirmarGuardado = new JLabel ("");
+
+    
+    //set components properties
+    etiquetaRecetas.setEnabled (false);
+    etiquetaRutinas.setEnabled (false);
 
     //adjust size and set layout
-    setPreferredSize (new Dimension (1176, 609));
+    setPreferredSize (new Dimension (944, 597));
     setLayout (null);
 
     //add components
@@ -47,64 +82,127 @@ public class Fat2Fit extends JPanel implements ActionListener{
     add (etiquetaPeso);
     add (etiquetaAltura);
     add (etiquetaEdad);
-    add (etiquetaGenero );
+    add (etiquetaNombre);
     add (campoTextoPeso);
     add (campoTextoAltura);
     add (campoTextoEdad);
-    add (campoTextoGenero);
+    add (campoTextoNombre);
     add (etiquetaTitulo);
-    add (etiquetaRutinas);
+
     add (etiquetaRecetas);
+    add (etiquetaRutinas);
+    
     add (nombreApp);
+    add (etiquetaProgreso1);
+    add (etiquetaProgreso2);
+    add (campoTextoDia);
+    add (campoTextoMes);
+    add (campoTextoAno);
+    add (etiquetaDia);
+    add (etiquetaMes);
+    add (etiquetaAno);
+    add (botonGuardarProgreso);
+    botonGuardarProgreso.addActionListener(this);
+    add (etiquetaMostrarIMC);
+    add (botonActualizarDatos);
+    botonActualizarDatos.addActionListener(this);
+    add (etiquetaConfirmarGuardado);
+
 
     //set component bounds (only needed by Absolute Positioning)
-    botonEnviarDatos.setBounds (70, 325, 100, 20);
-    etiquetaPeso.setBounds (45, 130, 100, 25);
-    etiquetaAltura.setBounds (45, 175, 100, 25);
-    etiquetaEdad.setBounds (45, 220, 100, 25);
-    etiquetaGenero .setBounds (45, 265, 100, 25);
-    campoTextoPeso.setBounds (115, 135, 100, 25);
-    campoTextoAltura.setBounds (115, 180, 100, 25);
-    campoTextoEdad.setBounds (115, 220, 100, 25);
-    campoTextoGenero.setBounds (115, 265, 100, 25);
-    etiquetaTitulo.setBounds (85, 90, 70, 25);
-    etiquetaRutinas.setBounds (405, 90, 690, 200);
-    etiquetaRecetas.setBounds (405, 315, 690, 200);
-    nombreApp.setBounds (10, 10, 100, 25);
+    botonEnviarDatos.setBounds (55, 250, 115, 20);
+    etiquetaPeso.setBounds (45, 90, 100, 25);
+    etiquetaAltura.setBounds (40, 125, 100, 25);
+    etiquetaEdad.setBounds (45, 165, 100, 25);
+    etiquetaNombre.setBounds (30, 205, 100, 25);
+    campoTextoPeso.setBounds (100, 90, 100, 25);
+    campoTextoAltura.setBounds (100, 125, 100, 25);
+    campoTextoEdad.setBounds (100, 165, 100, 25);
+    campoTextoNombre.setBounds (100, 205, 100, 25);
+    etiquetaTitulo.setBounds (70, 50, 135, 25);
+
+    etiquetaRecetas.setBounds (275, 80, 695, 250);
+    etiquetaRutinas.setBounds (275, 350, 695, 240);
+
+    nombreApp.setBounds (10, 10, 330, 25);
+    etiquetaProgreso1.setBounds (10, 325, 255, 35);
+    etiquetaProgreso2.setBounds (10, 350, 155, 20);
+    campoTextoDia.setBounds (85, 395, 55, 25);
+    campoTextoMes.setBounds (85, 435, 55, 25);
+    campoTextoAno.setBounds (85, 470, 55, 25);
+    etiquetaDia.setBounds (20, 395, 100, 25);
+    etiquetaMes.setBounds (20, 430, 100, 25);
+    etiquetaAno.setBounds (20, 465, 100, 25);
+    botonGuardarProgreso.setBounds (5, 505, 195, 25);
+    etiquetaMostrarIMC.setBounds (465, 15, 355, 25);
+    botonActualizarDatos.setBounds (55, 280, 115, 20);
+    etiquetaConfirmarGuardado.setBounds (5, 535, 280, 30);
   }
 
   public void actionPerformed(ActionEvent e){
-    if(e.getSource() == botonEnviarDatos){ 
+
+    if(e.getSource() == botonEnviarDatos){
 
       String pesoStr = campoTextoPeso.getText();
       double pesoDbl = Double.parseDouble(pesoStr);
-      
+
       String alturaStr = campoTextoAltura.getText();
       double alturaDbl = Double.parseDouble(alturaStr);
       
       String edadStr = campoTextoEdad.getText();
       int edadInt = Integer.parseInt(edadStr);
 
-      String generoStr = campoTextoGenero.getText();
+      String nombreStr = campoTextoNombre.getText();
 
-      Usuario usuario = new Usuario(pesoDbl, alturaDbl, edadInt, generoStr);
+      Usuario usuario = new Usuario(pesoDbl, alturaDbl, edadInt, nombreStr);
 
       double imc = usuario.calcularIMC();
+
+      // usuario.mostrarInfoUsuario();
+
+      String mensajeMostrarIMC = String.format("Tu IMC es de: %.2f", imc);
+      etiquetaMostrarIMC.setText(mensajeMostrarIMC);
 
       String mensajeRutina = Rutina.calcularTipoRutina(imc);
       etiquetaRutinas.setText(mensajeRutina);
 
       String mensajeReceta = Receta.calcularTipoReceta(imc);
       etiquetaRecetas.setText(mensajeReceta);
-      
     }
+
+    
+    if(e.getSource() == botonGuardarProgreso){ 
+
+      String diaString = campoTextoDia.getText();
+      int diaInt = Integer.parseInt(diaString);
+
+      String mesString = campoTextoMes.getText();
+      int mesInt = Integer.parseInt(mesString);
+
+      String anoString = campoTextoAno.getText();
+      int anoInt = Integer.parseInt(anoString);
+
+      int[] fechaDeGuardado = {diaInt,mesInt,anoInt};
+
+      // if (imc) {
+
+      // }
+
+      System.out.println(Arrays.toString(fechaDeGuardado));
+
+      System.out.println("Guardar Datos");
+
+      String mensajeConfirmarGuardar = ("Tu progreso se ha guardado!");
+      etiquetaConfirmarGuardado.setText(mensajeConfirmarGuardar);
+    }
+
   }
 
-  public static void main (String[] args) {
+public static void main (String[] args) {
     JFrame frame = new JFrame ("Fat2Fit");
     frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
     frame.getContentPane().add (new Fat2Fit());
     frame.pack();
     frame.setVisible (true);
-  }
+}
 }

@@ -15,7 +15,17 @@ public class Receta {
   public static String calcularTipoReceta(double imc) {
 
     if(imc<=18.5) {
-      return "Esta es la receta para peso bajo";
+      return "Receta: Batido de Avena, Banana y Mantequilla de Maní\n" + //
+                "\n" + //
+                "Ingredientes:\n" + //
+                "\t•\t1 plátano maduro.\n" + //
+                "\t•\t1/2 taza de avena.\n" + //
+                "\t•\t1 cucharada de mantequilla de maní.\n" + //
+                "\t•\t1 taza de leche entera.\n" + //
+                "\t•\t1 cucharada de miel (opcional).\n" + //
+                "\n" + //
+                "Instrucciones:\n" + //
+                "Mezclar todos los ingredientes en una licuadora hasta obtener una mezcla homogénea.";
     } else if (imc>18.5 && imc<=25) {
       return "Esta es la receta para peso normal";
     } else if (imc>25){
