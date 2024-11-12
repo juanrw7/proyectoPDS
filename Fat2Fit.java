@@ -121,8 +121,8 @@ public class Fat2Fit extends JPanel implements ActionListener{
     campoTextoNombre.setBounds (100, 205, 100, 25);
     etiquetaTitulo.setBounds (70, 50, 135, 25);
 
-    etiquetaRecetas.setBounds (275, 80, 695, 250);
-    etiquetaRutinas.setBounds (275, 350, 695, 240);
+    etiquetaRecetas.setBounds (275, 80, 720, 250);
+    etiquetaRutinas.setBounds (275, 350, 720, 240);
 
     nombreApp.setBounds (10, 10, 330, 25);
     etiquetaProgreso1.setBounds (10, 325, 255, 35);
